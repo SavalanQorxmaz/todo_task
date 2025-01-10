@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        li {
+            margin: 10px 0;
+            padding: 5px;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+        .actions {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .icon {
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+        form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+
+    <!-- Create a Task -->
+    <form action="{% url 'app:create_new_task' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="task_title" placeholder="New task" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <!-- Show available tasks -->
+    <ul class="task-list">
+        {% for task in task_list %}
+            <li>
+                <p>{{ forloop.counter }}. {{ task.title }} - {{ task.show_due_data }}</p>
+                <div class="actions">
+                    <form action="{% url 'app:toggle_task_status' task.pk %}" method="POST">                                                     
+                        {% csrf_token %}
+                        <button class="icon"  type="submit">
+                            {% if task.is_completed %}
+                            <img src="{% static 'icons/checkmark.png' %}">
+                            {% else %}
+                            <img src="{% static 'icons/wait.png' %}">
+                            {% endif %}
+                        </button>
+                    </form>
+
+                    <form  action="{% url 'app:delete_task' task.pk %}" method="POST">
+                        {% csrf_token %}
+                        
+                        <button class="icon" type="submit"><img src="{% static 'icons/delete.png' %}" alt="" width="24px" height="24px"></button>
+                    </form>
+                    <form action="{% url 'app:change_pin_situation' task.pk %}" method="post">
+                        {% csrf_token %}
+                        <button class="icon"  type="submit">
+                            {% if task.is_pinned %}
+                        <img src="{% static 'icons/pin.png' %}" alt="" width="24px" height="24px">
+                        {% else %}
+                        <img src="{% static 'icons/unpin.png' %}" alt="" width="24px" height="24px">
+                        {% endif %}
+                        </button>
+
+                        <!-- {{kwargs}} -->
+                        
+                    </form>
+                </div>
+            </li>
+        {% empty %}
+            <li>No tasks to display.</li>
+        {% endfor %}
+    </ul>
+    </p>
+<script type="module" src="{% static 'js/index.js' %}"></script>
+</body>
+
+</html>
