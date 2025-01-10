@@ -4,12 +4,11 @@ from django.urls import reverse
 from .models import Task, ToDoList
 
 
-def home_page(request, **kwargs):
-    print(kwargs)
+def home_page(request):
     user = request.user
     todo_list = ToDoList.objects.get(user=user)
     tasks = Task.objects.filter(todo_list=todo_list)
-    context = {"task_list": tasks, **kwargs}
+    context = {"task_list": tasks}
     return render(request, "home.html", context )
 
 
@@ -50,4 +49,4 @@ def change_pin_situation(request, pk):
             task.is_pinned = True
             ready = True
     task.save()  
-    return redirect(reverse("app:index", kwargs={'ready': ready}))
+    return redirect(reverse("app:index"))

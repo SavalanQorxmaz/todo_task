@@ -35,7 +35,7 @@ class Task(models.Model):
     class Meta:
         verbose_name = "Ox"
         verbose_name_plural = "Oxen"
-        ordering = ["title", "-created_at"]
+        ordering = [ "created_at"]
 
     def __str__(self):
         return f"Task \"{self.title}\""

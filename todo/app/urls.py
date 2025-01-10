@@ -7,7 +7,7 @@ urlpatterns = [
     path(
         "",
         views.home_page,
-        name="index"
+        name="index",
     ),
     path(
         "create-new-task/",
