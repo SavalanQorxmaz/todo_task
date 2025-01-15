@@ -64,7 +64,10 @@
     <ul class="task-list">
         {% for task in task_list %}
             <li>
-                <p>{{ forloop.counter }}. {{ task.title }} - {{ task.show_due_data }}</p>
+                {{ task.get_absolute_url }}
+                <a href="{% url 'app:task_detail' task.pk %}">
+                    <p>{{ forloop.counter }}. {{ task.title }} - {{ task.show_due_data }}</p>
+                </a>
                 <div class="actions">
                     <form action="{% url 'app:toggle_task_status' task.pk %}" method="POST">                                                     
                         {% csrf_token %}

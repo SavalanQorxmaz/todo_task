@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from datetime import timedelta
 from django.utils import timezone
 from utils.constants import *
+from django.urls import reverse
 
 
 class CustomUser(AbstractUser):
@@ -36,9 +37,12 @@ class Task(models.Model):
         verbose_name = "Ox"
         verbose_name_plural = "Oxen"
         ordering = [ "created_at"]
+    def get_absolute_url(self):
+        return reverse("app:task_detail", kwargs={'pk': self.pk})
 
     def __str__(self):
         return f"Task \"{self.title}\""
+    
     
     def save(self, *args, **kwargs):
         if not self.due_date:
