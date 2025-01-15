@@ -1,0 +1,89 @@
+
+
+.home-page {
+
+    padding: 10px;
+
+    .new-task-frame {
+        border: 1px solid black;
+        padding: 5px;
+        border-radius: 10px;
+
+        & > form {
+            width: 100%;
+            border: none;
+
+            display: flex;
+            justify-content: space-between;
+            & > input[type='text'] {
+                width: 100%;
+                border: none;
+                outline: none;
+                background-color: inherit;
+                padding: 3px;
+            }
+            & > button {
+                width: 20%;
+                border: none;
+
+                background-color: wheat;
+                padding: 3px;
+                cursor: pointer;
+                &:hover {
+                    background-color: aquamarine;
+                }
+            }
+        }
+    }
+    
+ul {
+    display: flex;
+    flex-direction: column-reverse;
+    
+li {
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .completed {
+        text-decoration: line-through;
+        opacity: 0.6;
+    }
+    .actions {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .icon {
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+    form {
+        display: flex;
+        margin-bottom: 20px;
+    }
+    input[type="text"] {
+        flex-grow: 1;
+        margin-right: 10px;
+    }
+}
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.2rem;
+
+}
+.detail {
+    font-size: 20px;
+    padding: 10px;
+}
+.detail *:not(h2) {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+}
+}

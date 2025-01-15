@@ -1,29 +1,8 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        a {
-            text-decoration: none;
-            font-size: 1.2rem;
-
-        }
-        .detail {
-            font-size: 20px;
-            padding: 10px;
-        }
-        .detail *:not(h2) {
-            border: 1px solid black;
-            margin: 5px;
-            padding: 5px;
-        }
-    </style>
-</head>
-<body>
     <a href="{% url 'app:index' %}">Back</a>
     <div class="detail">
         
@@ -31,5 +10,5 @@
     <p>{{task.id}}</p>
     <p>{{ task.todo_list.user}}</p>
     </div>
-</body>
-</html>
+    
+{% endblock %}

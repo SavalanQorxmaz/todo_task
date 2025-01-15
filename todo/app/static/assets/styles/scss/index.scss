@@ -1,0 +1,29 @@
+@import './home.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+
+
+
+#container {
+    margin: auto;
+}
+
+.container-mobile {
+    width: 100%;
+    background-color: aqua;
+}
+
+.container-tablet {
+    width: 600px;
+    background-color: beige;
+}
+.container-desktop {
+    width: 992px;
+    background-color: bisque;
+}
